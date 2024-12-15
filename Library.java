@@ -5,7 +5,7 @@ public class Library extends Building{
     /** edit
      * This is a collection which tracks titles and checks out the status
      * hasElevator returns T/F whether the library has elevator or not
-     */
+     **/
     private Hashtable<String, Boolean> collection;
     private boolean hasElevator;
 
@@ -14,7 +14,7 @@ public class Library extends Building{
      * @param library library name (String)
      * @param address library address (String)
      * @param numOfFloors number of floors in the library (int)
-     */
+     **/
     public Library(String name, String address, int floors, boolean hasElevator){
       super(name, address, floors);
       this.hasElevator = hasElevator;
@@ -25,7 +25,7 @@ public class Library extends Building{
     /**
      * Adds title to collection of titles; this throws an exception when title is in collection
      * @param title name of book and author (String)
-     */
+     **/
     public void addTitle(String title){
       if (this.collection.containsKey(title)){
         throw new RuntimeException("Unable to add in the collection");
@@ -39,7 +39,7 @@ public class Library extends Building{
      * Adds two books to system; checks if titles are in the system already, if the titles are same or not, or if one of books is has been added and before adding the titles to the system
      * @param title1 String title of first book added
      * @param title2 String title of second book
-     */
+     **/
     public void addTitle(String title1, String title2) {
       if(this.collection.containsKey(title1) && this.collection.containsKey(title2)){
         throw new RuntimeException("Already in the system");
@@ -77,7 +77,7 @@ public class Library extends Building{
     /**
      * Throws an exception when value is false; if not, this sets value to false
      * @param title book and author (String)
-     */
+     **/
     public void checkOut(String title){
       if (!this.collection.get(title)){
         throw new RuntimeException("Unable to check out");
@@ -90,7 +90,7 @@ public class Library extends Building{
     /**
      * Throws an exception when the title is in collection; if not, the value becomes true
      * @param title String name of book and author
-     */
+     **/
     public void returnBook(String title) {
       if (this.collection.containsKey(title)) {
         throw new RuntimeException("Found in the system"); 
@@ -104,7 +104,7 @@ public class Library extends Building{
      * Makes sures that both books are not returned yet or either has not been returned or not
      * @param title1 book title and author returned (String)
      * @param title2 book title and author returned (String)
-     */
+     **/
     public void returnBook(String book1, String book2){
       if(this.collection.containsKey(book1) && this.collection.containsKey(book2)){
         throw new RuntimeException("Both books are already returned.");
@@ -130,7 +130,7 @@ public class Library extends Building{
      * Returns a Boolean when the collection has a title
      * @param title name of book (String)
      * @return T/F if collection has a title (boolean)
-     */
+     **/
     public boolean containsTitle(String title) {
       return this.collection.containsKey(title); 
     }
@@ -139,28 +139,28 @@ public class Library extends Building{
      * Returns a value if the title is in the collection
      * @param title name of title and book (String)
      * @return T/F value if the title is currently available, false otherwise
-     */
+     **/
     public boolean isAvailable(String title) {
       return this.collection.get(title); 
     }
 
     /**
      * Prints out the collection
-     */
+     **/
     public void printCollection() {
       System.out.println(this.collection.toString());
     }
 
     /**
      * Prints out methods for users to use
-     */
+     **/
     public void showOptions() {
       System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n) \n addTitle(t) \n removeTitle(t) \n checkOut(t) \n returnBook(t)\n containsTitle(t) \n isAvailable(t) \n printCollection()");
     }
 
     /**
      * If there is an elevator, this changes activefloor to floorNum; if not, this checks that the individual is in the building and checks if the floor is valid.
-     */
+     **/
     public void goToFloor(int floorNum) {
       if (this.activeFloor == -1) {
           throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");

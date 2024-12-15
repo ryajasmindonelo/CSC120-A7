@@ -12,7 +12,7 @@ public class CampusMap {
     /**
      * Adds a Building to the map
      * @param b the Building to add
-     */
+     **/
     public void addBuilding(Building b) {
         System.out.println("Adding building...");
         buildings.add(b);
@@ -23,7 +23,7 @@ public class CampusMap {
      * Removes a Building from the map
      * @param b the Building to remove
      * @return the removed Building
-     */
+     **/
     public Building removeBuilding(Building b) {
         System.out.println("Removing building...");
         buildings.remove(b);

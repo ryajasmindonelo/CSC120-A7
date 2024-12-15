@@ -11,7 +11,7 @@ public class House extends Building{
    * @param address house address (String)
    * @param floor number of floors (String)
    * @param hasDining has dining or not (Boolean)
-   */
+   **/
   public House(String name, String address, int floor, boolean hasDining, boolean hasElevator){
     super(name, address, floor);
     residents = new ArrayList<>();
@@ -25,7 +25,7 @@ public class House extends Building{
    * @param name house name (String)
    * @param address house address (String)
    * @param hasDining T/F if house has dining room (boolean)
-   */
+   **/
   public House(String name, String address, boolean hasDining){
     super(name, address, 1);
     residents = new ArrayList<>();
@@ -38,7 +38,7 @@ public class House extends Building{
    * Constructs a house with address and hasDining
    * @param address house address (String)
    * @param hasDining T/F if the house has a dining room (boolean)
-   */
+   **/
   public House(String address, boolean hasDining){
     super(address);
     this.hasDiningRoom = hasDining;
@@ -48,7 +48,7 @@ public class House extends Building{
   /**
    * Determines whether the House has dining hall or not
    * @return T/F if house has dining hall or not (Boolean)
-   */
+   **/
   public boolean hasDiningRoom(){
     return this.hasDiningRoom;
   }
@@ -56,7 +56,7 @@ public class House extends Building{
   /**
    * Determines if house has an elevator
    * @return T/F if house has elevator (boolean)
-   */
+   **/
   public boolean hasElevator(){
     return this.hasElevator();
   }
@@ -64,7 +64,7 @@ public class House extends Building{
   /**
    * The number of residents in the house
    * @return the count of number of residents in the house (int)
-   */
+   **/
   public int nResidents(){
     return residents.size();
   }
@@ -72,12 +72,11 @@ public class House extends Building{
   /**
    * Throws an exception when the resident is already in the house; if not, it adds the resident to the house
    * @param name resident name (String)
-   */
+   **/
   public void moveIn(String name){
     if (residents.contains(name)){
       throw new RuntimeException(name + " is already in the house");
-    }
-    else {
+    } else {
       this.residents.add(name);
     }
   }
@@ -86,12 +85,11 @@ public class House extends Building{
    * Throws an exception when the resident is not in name; if not, this removes the resident
    * @param name resident name (String)
    * @return resident name who moved out (String)
-   */
+   **/
   public String moveOut(String name){
     if (!residents.contains(name)){
       throw new RuntimeException(name + " is not in the house");
-    }
-    else {
+    } else {
       this.residents.remove(name);
       return name;
     }
@@ -101,24 +99,27 @@ public class House extends Building{
    * Determines if a person is a resident in the House or not
    * @param person String name of resident
    * @return true/false if resident lives in the house or not
-   */
+   **/
   public boolean isResident(String person){
     if(this.residents.contains(person)){
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
   
   /**
    * Prints out methods users can use in the House class
-   */
+   **/
   public void showOptions(){
     System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n) \n moveIn(n) \n moveOut(n) \n nResident() \n isResident(n)");
   }
   
-
+/**
+ * Moves the user to the specified floor in the building.
+ * @param floorNum the target floor number
+ * @throws RuntimeException if the user is not in the building, if the floor number is out of range, or if the building has no elevator and the target floor is more than one floor away.
+ **/
   public void goToFloor(int floorNum){
     if (this.activeFloor == -1){
         throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
@@ -130,12 +131,10 @@ public class House extends Building{
       if((this.activeFloor) + 1 == floorNum || this.activeFloor -1 == floorNum){
         System.out.println("You are now on floor #" + floorNum + " of " + this.name);
         this.activeFloor = floorNum;
-      }
-      else{
+      } else {
         throw new RuntimeException("You can only go one floor at a time by stairs");
       }
-    }
-    else{
+    } else {
       System.out.println("You are now on floor #" + floorNum + " of " + this.name);
       this.activeFloor = floorNum;
     }
